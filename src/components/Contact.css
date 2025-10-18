@@ -1,0 +1,55 @@
+.contact {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+  color: var(--white);
+  text-align: center;
+}
+
+.contact-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.contact-subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+}
+
+.contact-email {
+  display: inline-block;
+  font-size: 1.3rem;
+  color: var(--accent-color);
+  text-decoration: none;
+  margin-bottom: 2rem;
+  transition: color 0.3s ease;
+}
+
+.contact-email:hover {
+  color: var(--white);
+}
+
+.copyright {
+  font-size: 0.9rem;
+  opacity: 0.7;
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .contact {
+    padding: 3rem 0;
+  }
+  
+  .contact-title {
+    font-size: 2rem;
+  }
+  
+  .contact-subtitle {
+    font-size: 1rem;
+  }
+  
+  .contact-email {
+    font-size: 1.1rem;
+  }
+}
