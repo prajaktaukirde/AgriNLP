@@ -212,22 +212,6 @@ const Advisory = () => {
         fuzzyProcessed: true,
         ragRetrieved: true
       });
-      
-      setMessages(prev => [...prev, { type: 'bot', text: response }]);
-      
-      // Track query analytics
-      trackQuery({
-        query: input,
-        language: queryLanguage,
-        type: queryType,
-        crop: crop,
-        region: 'Maharashtra', // Could be detected from user profile
-        confidence: 0.85 + Math.random() * 0.15, // 85-100% based on FET performance
-        responseTime: responseTime,
-        success: true,
-        fuzzyProcessed: true,
-        ragRetrieved: true
-      });
     }, 1000);
 
     setInput('');
