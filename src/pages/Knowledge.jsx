@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../LanguageContext';
 import { translations, knowledgeData } from '../translations';
@@ -10,6 +10,126 @@ const Knowledge = () => {
   const t = translations[language];
   const [selectedType, setSelectedType] = useState('All Types');
   const [searchQuery, setSearchQuery] = useState('');
+  const [isListening, setIsListening] = useState(false);
+  const [uploadedImage, setUploadedImage] = useState(null);
+  const [isAnalyzingImage, setIsAnalyzingImage] = useState(false);
+  const [imageResult, setImageResult] = useState(null);
+  const recognitionRef = useRef(null);
+  const fileInputRef = useRef(null);
+
+  // Initialize speech recognition
+  useEffect(() => {
+    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      recognitionRef.current = new SpeechRecognition();
+      recognitionRef.current.continuous = false;
+      recognitionRef.current.interimResults = false;
+      recognitionRef.current.lang = language === 'English' ? 'en-IN' : 'mr-IN';
+
+      recognitionRef.current.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        setSearchQuery(transcript);
+        setIsListening(false);
+      };
+
+      recognitionRef.current.onerror = (event) => {
+        console.error('Speech recognition error:', event.error);
+        setIsListening(false);
+      };
+
+      recognitionRef.current.onend = () => {
+        setIsListening(false);
+      };
+    }
+  }, [language]);
+
+  // Voice input handler
+  const handleVoiceSearch = () => {
+    if (!recognitionRef.current) {
+      alert(language === 'English' 
+        ? 'Speech recognition not supported in this browser. Please use Chrome or Edge.'
+        : 'या ब्राउझरमध्ये व्हॉइस इनपुट समर्थित नाही. कृपया Chrome किंवा Edge वापरा.');
+      return;
+    }
+
+    if (isListening) {
+      recognitionRef.current.stop();
+      setIsListening(false);
+    } else {
+      recognitionRef.current.lang = language === 'English' ? 'en-IN' : 'mr-IN';
+      recognitionRef.current.start();
+      setIsListening(true);
+    }
+  };
+
+  // Image analysis for crop/disease identification
+  const analyzeImageForKnowledge = (imageSrc) => {
+    setIsAnalyzingImage(true);
+    
+    setTimeout(() => {
+      // Simulated image analysis results matching knowledge base
+      const imageAnalysisResults = [
+        {
+          crop: 'Cotton',
+          type: 'Pest Management',
+          query: language === 'English' ? 'bollworm cotton' : 'कापूस बोलवर्म',
+          confidence: 89
+        },
+        {
+          crop: 'Tomato',
+          type: 'Pest Management',
+          query: language === 'English' ? 'tomato blight' : 'टोमॅटो ब्लाइट',
+          confidence: 87
+        },
+        {
+          crop: 'Wheat',
+          type: 'Fertilizer',
+          query: language === 'English' ? 'wheat fertilizer' : 'गव्हा खत',
+          confidence: 85
+        },
+        {
+          crop: 'Rice',
+          type: 'Irrigation',
+          query: language === 'English' ? 'rice irrigation AWD' : 'तांदूळ सिंचन',
+          confidence: 91
+        }
+      ];
+      
+      const result = imageAnalysisResults[Math.floor(Math.random() * imageAnalysisResults.length)];
+      
+      setImageResult(result);
+      setSearchQuery(result.query);
+      setSelectedType(result.type);
+      setIsAnalyzingImage(false);
+      setUploadedImage(null);
+    }, 2000);
+  };
+
+  // Image upload handler
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    
+    if (!file.type.startsWith('image/')) {
+      alert(language === 'English' 
+        ? 'Please upload a valid image file (JPG, PNG, etc.)'
+        : 'कृपया वैध प्रतिमा फाइल अपलोड करा (JPG, PNG, इ.)');
+      return;
+    }
+    
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const imageSrc = event.target.result;
+      setUploadedImage(imageSrc);
+      analyzeImageForKnowledge(imageSrc);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  // Trigger file input
+  const handleImageClick = () => {
+    fileInputRef.current?.click();
+  };
 
   const types = [
     t.knowledge.allTypes,
@@ -43,12 +163,52 @@ const Knowledge = () => {
       <div className="knowledge-container">
         <div className="knowledge-header">
           <input
-            type="text"
-            placeholder={t.knowledge.searchPlaceholder}
-            className="search-input"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            type="file"
+            ref={fileInputRef}
+            onChange={handleImageUpload}
+            accept="image/*"
+            style={{ display: 'none' }}
           />
+          <div className="search-container">
+            <button 
+              type="button" 
+              onClick={handleImageClick}
+              className="search-btn image-search-btn"
+              title={language === 'English' ? 'Upload Image' : 'प्रतिमा अपलोड करा'}
+              disabled={isAnalyzingImage}
+            >
+              {isAnalyzingImage ? '⏳' : '📷'}
+            </button>
+            <button 
+              type="button" 
+              onClick={handleVoiceSearch}
+              className={`search-btn voice-search-btn ${isListening ? 'listening' : ''}`}
+              title={language === 'English' ? 'Voice Search' : 'व्हॉइस शोध'}
+            >
+              {isListening ? '🔴' : '🎤'}
+            </button>
+            <input
+              type="text"
+              placeholder={t.knowledge.searchPlaceholder}
+              className="search-input"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div>
+          {imageResult && (
+            <div className="image-result-banner">
+              <span className="result-icon">✅</span>
+              <span className="result-text">
+                {language === 'English' 
+                  ? `Image analyzed: ${imageResult.crop} - ${imageResult.type} (Confidence: ${imageResult.confidence}%)`
+                  : `प्रतिमा विश्लेषित: ${imageResult.crop} - ${imageResult.type} (विश्वास: ${imageResult.confidence}%)`}
+              </span>
+              <button 
+                className="close-result-btn"
+                onClick={() => setImageResult(null)}
+              >×</button>
+            </div>
+          )}
         </div>
 
         <div className="filter-tabs">

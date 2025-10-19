@@ -348,12 +348,222 @@ export const knowledgeData = [
     region: 'All India',
     title: {
       en: 'Drip irrigation best practices for vegetable crops',
-      mr: 'भाजीपाला पिकांसाठी ठिबक सिंचन सर्वोत्तम पद्धती'
+      mr: 'भाजीपाला पिकांसाठी ठिबक सिंचनाच्या सर्वोत्तम पद्धती'
     },
     description: {
-      en: 'Install drippers at 30-45 cm spacing. Water daily for 30-60 minutes based on crop stage.',
-      mr: '३०-४५ सेमी अंतरावर ड्रिपर्स बसवा. पिकाच्या अवस्थेनुसार दररोज ३०-६० मिनिटे पाणी द्या.'
+      en: 'Use 2-4 liters per plant daily, adjust based on crop stage and weather.',
+      mr: 'पीक अवस्था आणि हवामानानुसार दररोज प्रति रोप २-४ लिटर पाणी द्या.'
     },
-    source: 'FAO'
+    source: 'FAO Irrigation Manual'
+  },
+  {
+    id: 7,
+    type: 'Fertilizer',
+    crop: 'Cotton',
+    region: 'Gujarat',
+    title: {
+      en: 'Bt cotton fertilizer management for high yield',
+      mr: 'उच्च उत्पन्नासाठी Bt कापूस खत व्यवस्थापन'
+    },
+    description: {
+      en: 'Apply 120 kg N, 60 kg P2O5, 60 kg K2O with 10 tonnes FYM per hectare.',
+      mr: '१२० किग्रॅ N, ६० किग्रॅ P2O5, ६० किग्रॅ K2O आणि १० टन FYM प्रति हेक्टर द्या.'
+    },
+    source: 'ICAR-CICR'
+  },
+  {
+    id: 8,
+    type: 'Pest Management',
+    crop: 'Tomato',
+    region: 'Karnataka',
+    title: {
+      en: 'Early blight and late blight control in tomato',
+      mr: 'टोमॅटोमध्ये अर्ली ब्लाइट आणि लेट ब्लाइट नियंत्रण'
+    },
+    description: {
+      en: 'Spray mancozeb @ 2.5g/L for early blight, metalaxyl+mancozeb @ 2g/L for late blight.',
+      mr: 'अर्ली ब्लाइटसाठी mancozeb २.५ ग्रॅ/लिटर, लेट ब्लाइटसाठी metalaxyl+mancozeb २ ग्रॅ/लिटर फवारा.'
+    },
+    source: 'ICAR-IIHR'
+  },
+  {
+    id: 9,
+    type: 'Crop Varieties',
+    crop: 'Rice',
+    region: 'West Bengal',
+    title: {
+      en: 'High-yielding rice varieties for eastern India',
+      mr: 'पूर्व भारतासाठी उच्च उत्पादन तांदूळ जाती'
+    },
+    description: {
+      en: 'Swarna, MTU-1010, and IR-64 for kharif; Improved Samba Mahsuri for rabi season.',
+      mr: 'खरीपसाठी स्वर्णा, MTU-1010, IR-64; रब्बीसाठी सुधारित साम्बा महसूरी.'
+    },
+    source: 'ICAR-IIRR'
+  },
+  {
+    id: 10,
+    type: 'Soil Management',
+    crop: 'Wheat',
+    region: 'Haryana',
+    title: {
+      en: 'Zinc deficiency correction in wheat',
+      mr: 'गव्हामध्ये झिंक कमतरता सुधारणा'
+    },
+    description: {
+      en: 'Apply zinc sulfate @ 25 kg/ha for zinc-deficient soils before sowing.',
+      mr: 'पेरणीपूर्वी झिंक-कमी मातीमध्ये झिंक सल्फेट २५ किग्रॅ/हे द्या.'
+    },
+    source: 'ICAR-IIWBR'
+  },
+  {
+    id: 11,
+    type: 'Irrigation',
+    crop: 'Rice',
+    region: 'Andhra Pradesh',
+    title: {
+      en: 'Alternate wetting and drying (AWD) for rice water saving',
+      mr: 'तांदूळ पाणी बचतीसाठी पर्यायी ओलावा आणि सुका (AWD) पद्धत'
+    },
+    description: {
+      en: 'Irrigate when water level drops 15cm below soil surface to save 25-30% water.',
+      mr: 'मातीच्या पृष्ठभागाच्या १५ सेमी खाली पाणी पातळी गेल्यावर सिंचन करा, २५-३०% पाणी वाचवा.'
+    },
+    source: 'IRRI Guidelines'
+  },
+  {
+    id: 12,
+    type: 'Fertilizer',
+    crop: 'Sugarcane',
+    region: 'Maharashtra',
+    title: {
+      en: 'Potassium application for sugarcane ratoon crop',
+      mr: 'ऊस ratoon पिकासाठी पोटॅश वापर'
+    },
+    description: {
+      en: 'Apply 60 kg K2O per hectare at earthing-up stage for better ratooning.',
+      mr: 'चांगल्या ratooning साठी माती चढवण्याच्या अवस्थेत ६० किग्रॅ K2O प्रति हेक्टर द्या.'
+    },
+    source: 'Vasantdada Sugar Institute'
+  },
+  {
+    id: 13,
+    type: 'Pest Management',
+    crop: 'Cotton',
+    region: 'Telangana',
+    title: {
+      en: 'Whitefly and pink bollworm management in cotton',
+      mr: 'कापसात पांढरी माशी आणि गुलाबी बोलवर्म व्यवस्थापन'
+    },
+    description: {
+      en: 'Use pheromone traps, yellow sticky traps, neem oil 3ml/L, and imidacloprid 0.3ml/L if needed.',
+      mr: 'फेरोमोन सापळे, पिवळे चिकट सापळे, कडुनिंब तेल ३ मिली/लिटर, आणि आवश्यक असल्यास imidacloprid ०.३ मिली/लिटर वापरा.'
+    },
+    source: 'PJTSAU'
+  },
+  {
+    id: 14,
+    type: 'Crop Varieties',
+    crop: 'Wheat',
+    region: 'Uttar Pradesh',
+    title: {
+      en: 'Rust-resistant wheat varieties for northern India',
+      mr: 'उत्तर भारतासाठी रस्ट-प्रतिरोधक गव्हा जाती'
+    },
+    description: {
+      en: 'PBW-343, WH-1105, HD-2967 show good resistance to yellow and brown rust.',
+      mr: 'PBW-343, WH-1105, HD-2967 पिवळ्या आणि तपकिरी रस्टसाठी चांगला प्रतिकार दर्शवितात.'
+    },
+    source: 'ICAR-IIWBR'
+  },
+  {
+    id: 15,
+    type: 'Soil Management',
+    crop: 'All Crops',
+    region: 'All India',
+    title: {
+      en: 'Soil testing and balanced fertilization',
+      mr: 'माती चाचणी आणि संतुलित खत व्यवस्था'
+    },
+    description: {
+      en: 'Test soil every 2-3 years and apply fertilizers based on soil test recommendations.',
+      mr: 'दर २-३ वर्षांनी माती तपासा आणि माती चाचणी शिफारशींवर आधारित खत द्या.'
+    },
+    source: 'ICAR-IISS'
+  },
+  {
+    id: 16,
+    type: 'Irrigation',
+    crop: 'Wheat',
+    region: 'Punjab',
+    title: {
+      en: 'Critical irrigation stages for wheat crop',
+      mr: 'गव्हा पिकासाठी गंभीर सिंचन अवस्था'
+    },
+    description: {
+      en: 'Apply irrigation at CRI (21 days), tillering (40-45 days), jointing, flowering, milk, and dough stages.',
+      mr: 'CRI (२१ दिवस), टिलरिंग (४०-४५ दिवस), जॉइंटिंग, फुलोरा, दुधाळ आणि पीठ अवस्थेत सिंचन करा.'
+    },
+    source: 'PAU Ludhiana'
+  },
+  {
+    id: 17,
+    type: 'Fertilizer',
+    crop: 'Rice',
+    region: 'Odisha',
+    title: {
+      en: 'Urea deep placement for rice nitrogen efficiency',
+      mr: 'तांदूळ नायट्रोजन कार्यक्षमतेसाठी युरिया खोल प्लेसमेंट'
+    },
+    description: {
+      en: 'Place urea briquettes 7-10cm deep between 4 hills to increase N use efficiency by 25-30%.',
+      mr: '४ रोपांच्या मध्ये ७-१० सेमी खोलीवर युरिया ब्रिकेट्स ठेवा, N वापर कार्यक्षमता २५-३०% वाढवा.'
+    },
+    source: 'IRRI-NRRI Collaboration'
+  },
+  {
+    id: 18,
+    type: 'Pest Management',
+    crop: 'Wheat',
+    region: 'Madhya Pradesh',
+    title: {
+      en: 'Aphid and termite control in wheat',
+      mr: 'गव्हामध्ये माशी आणि दीमक नियंत्रण'
+    },
+    description: {
+      en: 'For aphids: spray thiamethoxam 0.2g/L. For termites: seed treatment with chlorpyriphos 4ml/kg.',
+      mr: 'माशीसाठी: thiamethoxam ०.२ ग्रॅ/लिटर फवारा. दीमकसाठी: chlorpyriphos ४ मिली/किग्रॅ ने बीज उपचार.'
+    },
+    source: 'JNKVV Jabalpur'
+  },
+  {
+    id: 19,
+    type: 'Crop Varieties',
+    crop: 'Tomato',
+    region: 'All India',
+    title: {
+      en: 'Hybrid and open-pollinated tomato varieties',
+      mr: 'संकरित आणि मुक्त-परागण टोमॅटो जाती'
+    },
+    description: {
+      en: 'Hybrids: Abhilash, US-618. Open-pollinated: Pusa Ruby, Arka Vikas for better shelf life.',
+      mr: 'संकरित: अभिलाष, US-618. मुक्त-परागण: पुसा रुबी, अर्क विकास चांगल्या शेल्फ लाइफसाठी.'
+    },
+    source: 'ICAR-IIHR Bengaluru'
+  },
+  {
+    id: 20,
+    type: 'Soil Management',
+    crop: 'Cotton',
+    region: 'Maharashtra',
+    title: {
+      en: 'Black cotton soil management for moisture retention',
+      mr: 'ओलावा टिकवण्यासाठी काळी कापूस माती व्यवस्थापन'
+    },
+    description: {
+      en: 'Apply gypsum @ 500 kg/ha, use organic mulches, and avoid deep plowing in dry conditions.',
+      mr: 'जिप्सम ५०० किग्रॅ/हे द्या, सेंद्रिय पालापाचोळा वापरा, कोरड्या परिस्थितीत खोल नांगरणी टाळा.'
+    },
+    source: 'Dr. PDKV Akola'
   }
 ];
