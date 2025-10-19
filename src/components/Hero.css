@@ -1,6 +1,27 @@
 .hero {
   padding: 5rem 0;
   background: linear-gradient(135deg, #e8f5e9 0%, #fff9c4 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated background particles */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(circle at 20% 50%, rgba(76, 175, 80, 0.05) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 80%, rgba(255, 193, 7, 0.05) 0%, transparent 50%);
+  animation: floatBackground 20s ease-in-out infinite;
+  z-index: 0;
+}
+
+@keyframes floatBackground {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-10px, -10px) scale(1.05); }
 }
 
 .hero-container {
@@ -11,11 +32,23 @@
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
   align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
 .hero-content {
   animation: fadeInUp 0.8s ease;
 }
+
+.hero-content > * {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.hero-content > *:nth-child(1) { animation-delay: 0.1s; }
+.hero-content > *:nth-child(2) { animation-delay: 0.3s; }
+.hero-content > *:nth-child(3) { animation-delay: 0.5s; }
+.hero-content > *:nth-child(4) { animation-delay: 0.7s; }
 
 .hero-title {
   font-size: 3rem;
@@ -23,6 +56,17 @@
   margin-bottom: 1.5rem;
   color: var(--text-dark);
   line-height: 1.2;
+  background: linear-gradient(135deg, #2e7d32, #558b2f, #827717);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 .hero-subtitle {
@@ -38,9 +82,44 @@
   margin-bottom: 3rem;
 }
 
+.hero-buttons .btn {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.hero-buttons .btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.hero-buttons .btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.hero-buttons .btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(46, 125, 50, 0.3);
+}
+
 .hero-stats {
   display: flex;
   gap: 3rem;
+  animation: fadeIn 1s ease 1s both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .stat {
@@ -52,6 +131,16 @@
   font-weight: 700;
   color: var(--primary-color);
   margin-bottom: 0.5rem;
+  display: inline-block;
+}
+
+.stat:hover .stat-value {
+  animation: bounce 0.5s ease;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
 }
 
 .stat-label {
@@ -63,6 +152,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: fadeInRight 1s ease 0.5s both;
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .hero-image-grid {
@@ -81,15 +182,55 @@
   justify-content: center;
   font-size: 4rem;
   box-shadow: var(--shadow);
-  transition: transform 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-image-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.hero-image-card:hover::before {
+  left: 100%;
 }
 
 .hero-image-card:hover {
-  transform: translateY(-10px);
+  transform: translateY(-15px) scale(1.05);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
 }
 
 .hero-image-card:nth-child(2) {
   transform: translateY(30px);
+}
+
+.hero-image-card:nth-child(2):hover {
+  transform: translateY(15px) scale(1.05);
+}
+
+/* Stagger animation for cards */
+.hero-image-card:nth-child(1) { animation: popIn 0.5s ease 0.8s both; }
+.hero-image-card:nth-child(2) { animation: popIn 0.5s ease 1s both; }
+.hero-image-card:nth-child(3) { animation: popIn 0.5s ease 1.2s both; }
+.hero-image-card:nth-child(4) { animation: popIn 0.5s ease 1.4s both; }
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @keyframes fadeInUp {
