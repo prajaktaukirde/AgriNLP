@@ -24,7 +24,7 @@ const Knowledge = () => {
       recognitionRef.current = new SpeechRecognition();
       recognitionRef.current.continuous = false;
       recognitionRef.current.interimResults = false;
-      recognitionRef.current.lang = language === 'English' ? 'en-IN' : 'mr-IN';
+      recognitionRef.current.lang = language === 'en' ? 'en-IN' : 'mr-IN';
 
       recognitionRef.current.onresult = (event) => {
         const transcript = event.results[0][0].transcript;
@@ -46,7 +46,7 @@ const Knowledge = () => {
   // Voice input handler
   const handleVoiceSearch = () => {
     if (!recognitionRef.current) {
-      alert(language === 'English' 
+      alert(language === 'en' 
         ? 'Speech recognition not supported in this browser. Please use Chrome or Edge.'
         : 'या ब्राउझरमध्ये व्हॉइस इनपुट समर्थित नाही. कृपया Chrome किंवा Edge वापरा.');
       return;
@@ -56,7 +56,7 @@ const Knowledge = () => {
       recognitionRef.current.stop();
       setIsListening(false);
     } else {
-      recognitionRef.current.lang = language === 'English' ? 'en-IN' : 'mr-IN';
+      recognitionRef.current.lang = language === 'en' ? 'en-IN' : 'mr-IN';
       recognitionRef.current.start();
       setIsListening(true);
     }
@@ -72,25 +72,25 @@ const Knowledge = () => {
         {
           crop: 'Cotton',
           type: 'Pest Management',
-          query: language === 'English' ? 'bollworm cotton' : 'कापूस बोलवर्म',
+          query: language === 'en' ? 'bollworm cotton' : 'कापूस बोलवर्म',
           confidence: 89
         },
         {
           crop: 'Tomato',
           type: 'Pest Management',
-          query: language === 'English' ? 'tomato blight' : 'टोमॅटो ब्लाइट',
+          query: language === 'en' ? 'tomato blight' : 'टोमॅटो ब्लाइट',
           confidence: 87
         },
         {
           crop: 'Wheat',
           type: 'Fertilizer',
-          query: language === 'English' ? 'wheat fertilizer' : 'गव्हा खत',
+          query: language === 'en' ? 'wheat fertilizer' : 'गव्हा खत',
           confidence: 85
         },
         {
           crop: 'Rice',
           type: 'Irrigation',
-          query: language === 'English' ? 'rice irrigation AWD' : 'तांदूळ सिंचन',
+          query: language === 'en' ? 'rice irrigation AWD' : 'तांदूळ सिंचन',
           confidence: 91
         }
       ];
@@ -111,7 +111,7 @@ const Knowledge = () => {
     if (!file) return;
     
     if (!file.type.startsWith('image/')) {
-      alert(language === 'English' 
+      alert(language === 'en' 
         ? 'Please upload a valid image file (JPG, PNG, etc.)'
         : 'कृपया वैध प्रतिमा फाइल अपलोड करा (JPG, PNG, इ.)');
       return;
@@ -174,7 +174,7 @@ const Knowledge = () => {
               type="button" 
               onClick={handleImageClick}
               className="search-btn image-search-btn"
-              title={language === 'English' ? 'Upload Image' : 'प्रतिमा अपलोड करा'}
+              title={language === 'en' ? 'Upload Image' : 'प्रतिमा अपलोड करा'}
               disabled={isAnalyzingImage}
             >
               {isAnalyzingImage ? '⏳' : '📷'}
@@ -183,7 +183,7 @@ const Knowledge = () => {
               type="button" 
               onClick={handleVoiceSearch}
               className={`search-btn voice-search-btn ${isListening ? 'listening' : ''}`}
-              title={language === 'English' ? 'Voice Search' : 'व्हॉइस शोध'}
+              title={language === 'en' ? 'Voice Search' : 'व्हॉइस शोध'}
             >
               {isListening ? '🔴' : '🎤'}
             </button>
@@ -199,7 +199,7 @@ const Knowledge = () => {
             <div className="image-result-banner">
               <span className="result-icon">✅</span>
               <span className="result-text">
-                {language === 'English' 
+                {language === 'en' 
                   ? `Image analyzed: ${imageResult.crop} - ${imageResult.type} (Confidence: ${imageResult.confidence}%)`
                   : `प्रतिमा विश्लेषित: ${imageResult.crop} - ${imageResult.type} (विश्वास: ${imageResult.confidence}%)`}
               </span>

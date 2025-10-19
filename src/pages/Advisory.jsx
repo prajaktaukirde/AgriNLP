@@ -66,7 +66,7 @@ const Advisory = () => {
       recognitionRef.current = new SpeechRecognition();
       recognitionRef.current.continuous = false;
       recognitionRef.current.interimResults = false;
-      recognitionRef.current.lang = language === 'English' ? 'en-IN' : 'mr-IN';
+      recognitionRef.current.lang = language === 'en' ? 'en-IN' : 'mr-IN';
 
       recognitionRef.current.onresult = (event) => {
         const transcript = event.results[0][0].transcript;
@@ -88,7 +88,7 @@ const Advisory = () => {
   // Voice input handler
   const handleVoiceInput = () => {
     if (!recognitionRef.current) {
-      alert(language === 'English' 
+      alert(language === 'en' 
         ? 'Speech recognition not supported in this browser. Please use Chrome or Edge.'
         : 'या ब्राउझरमध्ये व्हॉइस इनपुट समर्थित नाही. कृपया Chrome किंवा Edge वापरा.');
       return;
@@ -98,7 +98,7 @@ const Advisory = () => {
       recognitionRef.current.stop();
       setIsListening(false);
     } else {
-      recognitionRef.current.lang = language === 'English' ? 'en-IN' : 'mr-IN';
+      recognitionRef.current.lang = language === 'en' ? 'en-IN' : 'mr-IN';
       recognitionRef.current.start();
       setIsListening(true);
     }
@@ -122,11 +122,11 @@ const Advisory = () => {
       ];
       
       const randomAnalysis = imageAnalysisResults[Math.floor(Math.random() * imageAnalysisResults.length)];
-      const analysisText = language === 'English' ? randomAnalysis.en : randomAnalysis.mr;
+      const analysisText = language === 'en' ? randomAnalysis.en : randomAnalysis.mr;
       
       setMessages(prev => [
         ...prev,
-        { type: 'user', text: language === 'English' ? '📷 [Image uploaded for analysis]' : '📷 [विश्लेषणासाठी प्रतिमा अपलोड केली]', image: imageSrc },
+        { type: 'user', text: language === 'en' ? '📷 [Image uploaded for analysis]' : '📷 [विश्लेषणासाठी प्रतिमा अपलोड केली]', image: imageSrc },
         { type: 'bot', text: analysisText }
       ]);
       
@@ -155,7 +155,7 @@ const Advisory = () => {
     if (!file) return;
     
     if (!file.type.startsWith('image/')) {
-      alert(language === 'English' 
+      alert(language === 'en' 
         ? 'Please upload a valid image file (JPG, PNG, etc.)'
         : 'कृपया वैध प्रतिमा फाइल अपलोड करा (JPG, PNG, इ.)');
       return;
