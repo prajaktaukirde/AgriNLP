@@ -20,28 +20,71 @@ const Advisory = () => {
 
   const detectQueryType = (query) => {
     const lowerQuery = query.toLowerCase();
-    if (lowerQuery.includes('water') || lowerQuery.includes('irrigat') || lowerQuery.includes('पाणी') || lowerQuery.includes('सिंचन')) {
-      return 'Irrigation';
-    } else if (lowerQuery.includes('fertiliz') || lowerQuery.includes('urea') || lowerQuery.includes('npk') || lowerQuery.includes('खत')) {
-      return 'Fertilizer';
-    } else if (lowerQuery.includes('pest') || lowerQuery.includes('insect') || lowerQuery.includes('disease') || lowerQuery.includes('कीटक')) {
+    
+    // Enhanced detection with multiple keywords and context
+    
+    // Pest/Disease Detection (highest priority for "खराब"/damage)
+    if (lowerQuery.includes('खराब') || lowerQuery.includes('damage') || lowerQuery.includes('problem') || 
+        lowerQuery.includes('समस्या') || lowerQuery.includes('रोग') || lowerQuery.includes('disease') ||
+        lowerQuery.includes('pest') || lowerQuery.includes('insect') || lowerQuery.includes('कीटक') ||
+        lowerQuery.includes('किडा') || lowerQuery.includes('माशी') || lowerQuery.includes('बोरर') ||
+        lowerQuery.includes('worm') || lowerQuery.includes('बग') || lowerQuery.includes('infection') ||
+        lowerQuery.includes('rot') || lowerQuery.includes('कुजणे') || lowerQuery.includes('मरणे') ||
+        lowerQuery.includes('dying') || lowerQuery.includes('वाळणे') || lowerQuery.includes('wilting') ||
+        lowerQuery.includes('spot') || lowerQuery.includes('डाग') || lowerQuery.includes('पिवळे') ||
+        lowerQuery.includes('yellow') || lowerQuery.includes('control') || lowerQuery.includes('नियंत्रण')) {
       return 'Pest Management';
-    } else if (lowerQuery.includes('variet') || lowerQuery.includes('seed') || lowerQuery.includes('बी') || lowerQuery.includes('जात')) {
+    }
+    
+    // Water/Irrigation Detection
+    if (lowerQuery.includes('water') || lowerQuery.includes('irrigat') || lowerQuery.includes('पाणी') || 
+        lowerQuery.includes('सिंचन') || lowerQuery.includes('drip') || lowerQuery.includes('ठिबक')) {
+      return 'Irrigation';
+    }
+    
+    // Fertilizer Detection
+    if (lowerQuery.includes('fertiliz') || lowerQuery.includes('urea') || lowerQuery.includes('npk') || 
+        lowerQuery.includes('खत') || lowerQuery.includes('manure') || lowerQuery.includes('nutrient') ||
+        lowerQuery.includes('पोषक') || lowerQuery.includes('नायट्रोजन') || lowerQuery.includes('nitrogen')) {
+      return 'Fertilizer';
+    }
+    
+    // Variety/Seed Detection
+    if (lowerQuery.includes('variet') || lowerQuery.includes('seed') || lowerQuery.includes('बी') || 
+        lowerQuery.includes('जात') || lowerQuery.includes('hybrid') || lowerQuery.includes('संकर')) {
       return 'Crop Varieties';
-    } else if (lowerQuery.includes('soil') || lowerQuery.includes('माती')) {
+    }
+    
+    // Soil Management Detection
+    if (lowerQuery.includes('soil') || lowerQuery.includes('माती') || lowerQuery.includes('ph') ||
+        lowerQuery.includes('organic') || lowerQuery.includes('सेंद्रिय')) {
       return 'Soil Management';
     }
+    
     return 'General';
   };
 
   const detectCrop = (query) => {
     const lowerQuery = query.toLowerCase();
-    if (lowerQuery.includes('cotton') || lowerQuery.includes('कापूस')) return 'Cotton';
-    if (lowerQuery.includes('wheat') || lowerQuery.includes('गहू')) return 'Wheat';
-    if (lowerQuery.includes('rice') || lowerQuery.includes('तांदूळ')) return 'Rice';
-    if (lowerQuery.includes('sugarcane') || lowerQuery.includes('ऊस')) return 'Sugarcane';
+    
+    // Enhanced crop detection with multiple variations
+    if (lowerQuery.includes('cotton') || lowerQuery.includes('कापूस') || lowerQuery.includes('कॉटन')) return 'Cotton';
+    if (lowerQuery.includes('wheat') || lowerQuery.includes('गहू') || lowerQuery.includes('गव्हा')) return 'Wheat';
+    if (lowerQuery.includes('rice') || lowerQuery.includes('तांदूळ') || lowerQuery.includes('भात')) return 'Rice';
+    if (lowerQuery.includes('sugarcane') || lowerQuery.includes('ऊस') || lowerQuery.includes('उस')) return 'Sugarcane';
     if (lowerQuery.includes('soybean') || lowerQuery.includes('सोयाबीन')) return 'Soybean';
-    if (lowerQuery.includes('tomato') || lowerQuery.includes('टोमॅटो')) return 'Tomato';
+    if (lowerQuery.includes('tomato') || lowerQuery.includes('टोमॅटो') || lowerQuery.includes('टमाटर')) return 'Tomato';
+    
+    // Detect "flower" as crop or part of crop
+    if (lowerQuery.includes('flower') || lowerQuery.includes('फूल') || lowerQuery.includes('फुल')) {
+      // Context: If asking about flower problems, likely about flowering stage of a crop
+      if (lowerQuery.includes('खराब') || lowerQuery.includes('damage') || lowerQuery.includes('problem')) {
+        // Could be tomato, cotton, or any flowering crop - default to general
+        return 'Tomato'; // Tomato flower problems are common
+      }
+      return 'Vegetables';
+    }
+    
     return null;
   };
 
