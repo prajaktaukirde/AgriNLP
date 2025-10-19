@@ -78,12 +78,49 @@
   padding: 2rem;
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid transparent;
 }
 
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(76, 175, 80, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.stat-card:hover::before {
+  left: 100%;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stat-card:nth-child(1) { animation-delay: 0.1s; }
+.stat-card:nth-child(2) { animation-delay: 0.2s; }
+.stat-card:nth-child(3) { animation-delay: 0.3s; }
+.stat-card:nth-child(4) { animation-delay: 0.4s; }
+
 .stat-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  border-color: var(--primary-color);
 }
 
 .stat-label {
@@ -98,6 +135,17 @@
   font-weight: 800;
   color: var(--primary-color);
   margin-bottom: 0.5rem;
+  display: inline-block;
+}
+
+.stat-card:hover .stat-value {
+  animation: countUp 0.5s ease;
+}
+
+@keyframes countUp {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
 }
 
 .stat-change {
@@ -125,6 +173,32 @@
   padding: 2rem;
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
+  opacity: 0;
+  animation: fadeInScale 0.6s ease forwards;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid transparent;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.chart-card:nth-child(1) { animation-delay: 0.2s; }
+.chart-card:nth-child(2) { animation-delay: 0.3s; }
+.chart-card:nth-child(3) { animation-delay: 0.4s; }
+.chart-card:nth-child(4) { animation-delay: 0.5s; }
+
+.chart-card:hover {
+  border-color: var(--primary-color);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
 }
 
 .chart-title {
@@ -179,23 +253,30 @@
   align-items: flex-start;
   justify-content: center;
   padding-top: 0.5rem;
-  transition: all 0.3s ease;
-  animation: growUp 0.8s ease-out;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  animation: growUp 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  cursor: pointer;
 }
 
 @keyframes growUp {
   from {
     height: 0;
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
 .bar:hover {
-  opacity: 0.8;
-  transform: scaleX(1.05);
+  opacity: 1;
+  transform: scaleY(1.05) scaleX(1.1);
+  box-shadow: 0 -5px 20px rgba(76, 175, 80, 0.4);
 }
 
 .bar-primary {
   background: linear-gradient(180deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
 }
 
 .bar-secondary {

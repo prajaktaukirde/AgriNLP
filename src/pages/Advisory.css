@@ -93,6 +93,18 @@
 .message {
   margin-bottom: 1.5rem;
   display: flex;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .message.user {
@@ -109,18 +121,92 @@
   border-radius: 20px;
   font-size: 1rem;
   line-height: 1.5;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.message-bubble:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
 }
 
 .message.user .message-bubble {
-  background: var(--primary-color);
+  background: linear-gradient(135deg, var(--primary-color) 0%, #558b2f 100%);
   color: var(--white);
   border-bottom-right-radius: 5px;
+  animation: bounceIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .message.bot .message-bubble {
   background: var(--bg-light);
   color: var(--text-dark);
   border-bottom-left-radius: 5px;
+  animation: fadeInLeft 0.5s ease;
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Typing indicator */
+.typing-indicator {
+  display: flex;
+  gap: 0.4rem;
+  padding: 1rem 1.5rem;
+  background: var(--bg-light);
+  border-radius: 20px;
+  border-bottom-left-radius: 5px;
+  max-width: 70px;
+  animation: fadeInLeft 0.3s ease;
+}
+
+.typing-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text-light);
+  animation: typingAnimation 1.4s infinite;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typingAnimation {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.7;
+  }
+  30% {
+    transform: translateY(-10px);
+    opacity: 1;
+  }
 }
 
 .chat-input-form {
@@ -140,16 +226,37 @@
   border-radius: 50%;
   font-size: 1.3rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.input-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(76, 175, 80, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.input-btn:hover::before {
+  width: 100px;
+  height: 100px;
 }
 
 .input-btn:hover {
   background: var(--primary-color);
   color: var(--white);
-  transform: scale(1.1);
+  transform: scale(1.15) rotate(10deg);
+  box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
 }
 
 .input-btn:disabled {
@@ -161,17 +268,52 @@
 .voice-btn.listening {
   background: #ff4444;
   color: var(--white);
-  animation: pulse 1.5s infinite;
+  animation: pulseListen 1.5s infinite;
+  box-shadow: 0 0 0 0 rgba(255, 68, 68, 0.7);
 }
 
-@keyframes pulse {
-  0%, 100% {
+@keyframes pulseListen {
+  0% {
     transform: scale(1);
-    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(255, 68, 68, 0.7);
   }
   50% {
     transform: scale(1.1);
-    opacity: 0.8;
+    box-shadow: 0 0 0 15px rgba(255, 68, 68, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 68, 68, 0);
+  }
+}
+
+/* Image upload animation */
+.image-btn.uploading {
+  animation: rotateUpload 1s linear infinite;
+}
+
+@keyframes rotateUpload {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Processing state */
+.input-btn.processing {
+  animation: processingPulse 1s ease-in-out infinite;
+}
+
+@keyframes processingPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(0.9);
   }
 }
 

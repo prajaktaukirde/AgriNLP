@@ -172,6 +172,32 @@
   gap: 1.5rem;
 }
 
+.hero-svg {
+  width: 80px;
+  height: 80px;
+  transition: transform 0.3s ease;
+}
+
+.hero-image-card:hover .hero-svg {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.image-label {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+}
+
+.hero-image-card:hover .image-label {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .hero-image-card {
   width: 150px;
   height: 150px;
