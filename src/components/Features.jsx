@@ -36,6 +36,22 @@ const Features = () => {
       icon: '💡',
       title: t.features.explainable.title,
       desc: t.features.explainable.desc
+    },
+    {
+      icon: '🤖',
+      title: t.features.chatgpt.title,
+      desc: t.features.chatgpt.desc,
+      badge: 'Optional'
+    },
+    {
+      icon: '📊',
+      title: t.features.analytics.title,
+      desc: t.features.analytics.desc
+    },
+    {
+      icon: '✨',
+      title: t.features.animations.title,
+      desc: t.features.animations.desc
     }
   ];
 
@@ -47,7 +63,10 @@ const Features = () => {
           {features.map((feature, index) => (
             <div key={index} className="feature-card">
               <div className="feature-icon">{feature.icon}</div>
-              <h3 className="feature-title">{feature.title}</h3>
+              <h3 className="feature-title">
+                {feature.title}
+                {feature.badge && <span className="feature-badge">{feature.badge}</span>}
+              </h3>
               <p className="feature-desc">{feature.desc}</p>
             </div>
           ))}

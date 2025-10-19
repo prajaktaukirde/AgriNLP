@@ -41,6 +41,18 @@ export const translations = {
       explainable: {
         title: 'Explainable Output',
         desc: 'Rule-based explanations with confidence scores.'
+      },
+      chatgpt: {
+        title: 'ChatGPT AI Integration (Optional)',
+        desc: 'Advanced queries powered by GPT-4 with 80% cost savings through hybrid routing.'
+      },
+      analytics: {
+        title: 'Real-time Analytics Dashboard',
+        desc: 'Comprehensive query insights, performance metrics, and usage statistics.'
+      },
+      animations: {
+        title: 'Modern UI & Animations',
+        desc: 'Professional SVG illustrations, smooth transitions, and interactive elements.'
       }
     },
     architecture: {
@@ -59,8 +71,7 @@ export const translations = {
       accuracy: 'Accuracy',
       clarity: 'Clarity',
       multimodal: 'Multimodal',
-      multimodalDetails: 'Text 94% · Voice 91% · Image 88%',
-      description: 'Outperforms AgriBot and AgriLLM across understanding, clarity, and reliability.'
+      multimodalDetails: 'Text 94% · Voice 91% · Image 88%'
     },
     contact: {
       title: 'Ready to collaborate or deploy?',
@@ -173,6 +184,18 @@ export const translations = {
       explainable: {
         title: 'समजण्यासारखा परिणाम',
         desc: 'नियम-आधारित स्पष्टीकरणे व विश्वास गुणांक.'
+      },
+      chatgpt: {
+        title: 'ChatGPT AI एकत्रीकरण (ऐच्छिक)',
+        desc: 'GPT-4 द्वारे संचालित प्रगत प्रश्न, हायब्रिड राउटिंगद्वारे 80% खर्च बचत.'
+      },
+      analytics: {
+        title: 'रीअल-टाइम विश्लेषण डॅशबोर्ड',
+        desc: 'संपूर्ण क्वेरी अंतर्दृष्टी, कार्यप्रदर्शन मेट्रिक्स आणि वापर आकडेवारी.'
+      },
+      animations: {
+        title: 'आधुनिक UI आणि अनिमेशन',
+        desc: 'व्यावसायिक SVG चित्रे, सुरळीत संक्रमण आणि इंटरअॅक्टिव्ह घटक.'
       }
     },
     architecture: {
@@ -191,8 +214,7 @@ export const translations = {
       accuracy: 'अचूकता',
       clarity: 'स्पष्टता',
       multimodal: 'मल्टिमोडल',
-      multimodalDetails: 'Text 94% · Voice 91% · Image 88%',
-      description: 'AgriBot आणि AgriLLM पेक्षा चांगली समज, स्पष्टता व विश्वसनीयता.'
+      multimodalDetails: 'Text 94% · Voice 91% · Image 88%'
     },
     contact: {
       title: 'सहकार्य किंवा तैनातीसाठी तयार?',

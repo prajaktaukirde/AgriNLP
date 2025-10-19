@@ -21,6 +21,22 @@ const Advisory = () => {
   const detectQueryType = (query) => {
     const lowerQuery = query.toLowerCase();
     
+    // Check for greetings first (highest priority)
+    const greetings = [
+      'hello', 'hi', 'hey', 'greetings', 'good morning', 'good afternoon', 'good evening',
+      'namaskar', 'नमस्कार', 'नमस्ते', 'namaste', 'नमस्कार', 'हॅलो', 'हाय',
+      'शुभ सकाळ', 'शुभ दिवस', 'शुभ संध्याकाळ', 'how are you', 'whats up',
+      'कसे आहात', 'कसं आहे', 'काय चाललंय', 'काय हाल'
+    ];
+    
+    // Check if query is just a greeting (short query with greeting words)
+    const isShortQuery = lowerQuery.trim().split(/\s+/).length <= 5;
+    const containsGreeting = greetings.some(greeting => lowerQuery.includes(greeting));
+    
+    if (isShortQuery && containsGreeting) {
+      return 'Greeting';
+    }
+    
     // Enhanced detection with multiple keywords and context
     
     // Pest/Disease Detection (highest priority for "खराब"/damage)
@@ -221,6 +237,78 @@ const Advisory = () => {
   // Knowledge base for accurate responses
   const getResponse = (queryType, crop, queryLanguage, userQuery) => {
     const lowerQuery = userQuery.toLowerCase();
+    
+    // Handle greetings with warm, helpful responses
+    if (queryType === 'Greeting') {
+      const greetingResponses = {
+        en: [
+          `Hello! Welcome to FET (Fuzzy Evolutionary Transformer) Agricultural Advisory System. I'm here to help you with:
+🌾 Crop cultivation advice
+💧 Irrigation guidance
+🌱 Fertilizer recommendations
+🐛 Pest & disease management
+🌽 Crop variety selection
+📈 Soil health tips
+
+How can I assist you today? Feel free to ask me anything about your crops!`,
+          `Hi there! 👋 I'm your AI agricultural advisor powered by FET technology. I can help you with farming questions in both English and Marathi.
+
+What would you like to know about?
+• Irrigation schedules
+• Fertilizer application
+• Pest control
+• Crop diseases
+• Best varieties
+• Soil management
+
+Ask me anything!`,
+          `Greetings! ☺️ Welcome to your intelligent farming assistant. I use advanced AI to provide accurate agricultural advice based on ICAR and FAO guidelines.
+
+I can answer questions about:
+✓ Cotton, Wheat, Rice, Vegetables
+✓ Water management
+✓ Nutrient planning
+✓ Integrated pest management
+
+What crop are you growing? How can I help?`
+        ],
+        mr: [
+          `नमस्कार! FET (फजी इव्हॉल्यूशनरी ट्रान्सफॉर्मर) कृषी सल्लागार प्रणालीमध्ये आपलं स्वागत आहे! मी यामध्ये तुम्हाला मदत करू शकतो:
+🌾 पीक लागवड सल्ला
+💧 सिंचन मार्गदर्शन
+🌱 खत शिबारसी
+🐛 कीटक व रोग व्यवस्थापन
+🌽 पीक जात निवड
+📈 माती आरोग्य टिप्स
+
+आज मी तुम्हाला कशी मदत करू शकतो? तुमच्या पिकांबद्दल काहीही विचारा!`,
+          `नमस्कार! 👋 मी FET तंत्रज्ञानावर आधारित तुमचा AI कृषी सल्लागार आहे. मी मराठी आणि इंग्रजी दोन्ही भाषांमध्ये शेतीच्या प्रश्नांमध्ये मदत करू शकतो.
+
+तुम्हाला काय जाणून घ्यायचं आहे?
+• सिंचन वेळापत्रक
+• खत वापर
+• कीटक नियंत्रण
+• पिकाचे रोग
+• सर्वोत्तम जाती
+• माती व्यवस्थापन
+
+मला काहीही विचारा!`,
+          `नमस्ते! ☺️ तुमच्या बुद्धिमान शेती सहाय्यकामध्ये स्वागत आहे. मी ICAR आणि FAO मार्गदर्शक तत्त्वांवर आधारित अचूक कृषी सल्ला देण्यासाठी प्रगत AI वापरतो.
+
+मी याबद्दल प्रश्नांची उत्तरे देणार:
+✓ कापूस, गव्हा, तांदूळ, भाज्या
+✓ पाणी व्यवस्थापन
+✓ पोषक नियोजन
+✓ एकात्मिक कीटक व्यवस्थापन
+
+तुम्ही कोणते पीक घेत आहात? मी कशी मदत करू?`
+        ]
+      };
+      
+      // Select random greeting response based on language
+      const responses = queryLanguage === 'Marathi' ? greetingResponses.mr : greetingResponses.en;
+      return responses[Math.floor(Math.random() * responses.length)];
+    }
     
     // Crop-specific irrigation advice
     const irrigationKB = {
