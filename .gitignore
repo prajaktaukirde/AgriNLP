@@ -1,6 +1,8 @@
 # Dependencies
 node_modules/
 package-lock.json
+backend/node_modules/
+backend/package-lock.json
 
 # Production build
 dist/
@@ -10,6 +12,13 @@ build/
 .env
 .env.local
 .env.production
+backend/.env
+backend/.env.local
+backend/.env.production
+
+# OpenAI API Keys (NEVER COMMIT THESE!)
+**/OPENAI_API_KEY*
+**/*.key
 
 # IDE
 .vscode/

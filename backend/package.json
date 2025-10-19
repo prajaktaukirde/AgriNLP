@@ -1,0 +1,32 @@
+{
+  "name": "agrinlp-backend",
+  "version": "1.0.0",
+  "description": "ChatGPT-level AI backend for FET Agricultural Advisory System",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "agriculture",
+    "ai",
+    "openai",
+    "chatgpt",
+    "advisory",
+    "multilingual"
+  ],
+  "author": "Prajakta Ukirde",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "openai": "^4.20.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "mongoose": "^8.0.3",
+    "node-cache": "^5.1.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}
