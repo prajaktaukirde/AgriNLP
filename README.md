@@ -203,25 +203,6 @@ If you want to enable advanced AI features:
 
 See `AI-IMPLEMENTATION-GUIDE.md` for detailed setup instructions.
 
-## 💰 FREE vs PAID Clarification
-
-### 100% FREE Features (No Payment Required)
-- ✅ Full web interface
-- ✅ Multilingual support (English/Marathi)
-- ✅ Knowledge base with 20+ agricultural articles
-- ✅ Voice input using Web Speech API
-- ✅ Image upload interface
-- ✅ Analytics dashboard
-- ✅ All animations and UI features
-- ✅ Fuzzy logic inference
-- ✅ RAG-based knowledge retrieval
-
-### Optional PAID Features (Requires OpenAI API Key)
-- 💳 ChatGPT GPT-4 integration for advanced queries
-- 💳 Conversation memory and context awareness
-- 💳 Dynamic responses beyond knowledge base
-
-**Bottom Line**: You can use the entire system for FREE. AI backend is an optional enhancement for power users.
 
 ## 📝 Knowledge Base
 
