@@ -18,14 +18,6 @@ A modern, multilingual (English-Marathi) web application for agricultural adviso
 - **Voice Input**: Speak your questions in English or Marathi
 - **Responsive Design**: Works perfectly on desktop, tablet, and mobile devices
 
-### Optional AI Enhancement (Requires OpenAI API Key - Paid)
-
-- **ChatGPT GPT-4 Integration**: Advanced AI-powered responses for complex queries
-- **Hybrid Intelligence Routing**: Automatically uses free knowledge base for simple queries, GPT-4 only for complex ones
-- **80% Cost Savings**: Smart caching and hybrid routing reduce API costs by 80%
-- **Conversation Memory**: Maintains context across 10 messages
-- **Fallback Support**: System works 100% without AI backend using knowledge base
-
 > **Note**: The AI backend is completely **OPTIONAL**. The entire system works perfectly FREE using the built-in knowledge base!
 
 ## 📋 Prerequisites
